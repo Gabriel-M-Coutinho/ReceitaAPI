@@ -1,7 +1,6 @@
 package com.example.ReceitaAPI.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -11,8 +10,13 @@ import java.util.Date;
 @Entity
 @Table(name = "tb_Branches")
 public class BranchModel {
+    @Id
+    private Long id;
 
-    private String cnpjBase;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cnpj_base")
+    private CompanyModel cnpjBase;
     private String cnpjOrdem;
     private String cnpjDV;
     private int identificadorMatrizFilial;

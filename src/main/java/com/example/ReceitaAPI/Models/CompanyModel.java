@@ -9,20 +9,21 @@ import java.util.UUID;
 @Entity
 @Table(name = "tb_Companies")
 public class CompanyModel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID uuid;
 
+    @Id
     @Column(nullable = false)
     private String cnpjBase;
     @Column(nullable = false)
     private String razaoSocial;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "LegalNatureId")
+    @ManyToOne
+    @JoinColumn(name = "LegalNatureId",referencedColumnName = "id")
     private LegalNatureModel legalNatureModel;
 
-    private String qualificacaoResponsavel;
+    @ManyToMany
+    @JoinColumn(name = "Qualificacao_Responsavel_id",referencedColumnName = "id")
+    private QualificacaoResponsavelModel qualificacaoResponsavelModel;
+
     @Column(nullable = false)
     private double capitalSocial;
     @Column(nullable = false)
