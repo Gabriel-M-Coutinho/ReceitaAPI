@@ -3,6 +3,8 @@ package com.example.ReceitaAPI.Models;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Data
@@ -26,22 +28,36 @@ public class CompanyModel {
 
     @Column(nullable = false)
     private double capitalSocial;
-    @Column(nullable = false)
+
+    @ManyToMany
+    @JoinColumn(name = "PorteEmpresaId" , referencedColumnName = "id")
     private String porteEmpresa;
-    @Column(nullable = false)
+
     private String enteFederativoResponsavel;
-    
 
-    //@OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    //private List<UserModel> employeelist;
-
+    @OneToMany(mappedBy = "cnpjBase",cascade = CascadeType.ALL)
+    List<BranchModel> Estabelecimentos;
 
 
-    public CompanyModel(String name, String cnpj) {
- 
+    public CompanyModel(String cnpjBase, String razaoSocial, LegalNatureModel legalNatureModel, QualificacaoResponsavelModel qualificacaoResponsavelModel, double capitalSocial, String porteEmpresa, String enteFederativoResponsavel) {
+        this.cnpjBase = cnpjBase;
+        this.razaoSocial = razaoSocial;
+        this.legalNatureModel = legalNatureModel;
+        this.qualificacaoResponsavelModel = qualificacaoResponsavelModel;
+        this.capitalSocial = capitalSocial;
+        this.porteEmpresa = porteEmpresa;
+        this.enteFederativoResponsavel = enteFederativoResponsavel;
+
+        Estabelecimentos = new ArrayList<BranchModel>();
+
     }
 
-
+    public void AddEstabeleciomento(BranchModel branchModel){
+        Estabelecimentos.add(branchModel);
+    }
+    public void DeleteEstabelecimento(BranchModel branchModel){
+        Estabelecimentos.remove(branchModel);
+    }
 
 
 

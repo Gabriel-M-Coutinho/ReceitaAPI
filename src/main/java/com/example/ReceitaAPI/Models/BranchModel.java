@@ -1,5 +1,6 @@
 package com.example.ReceitaAPI.Models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,9 +18,14 @@ public class BranchModel {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cnpj_base")
     private CompanyModel cnpjBase;
+
+    @JsonIgnore
+    @ManyToOne
+    private CompanyModel companyModel;
     private String cnpjOrdem;
     private String cnpjDV;
-    private int identificadorMatrizFilial;
+    @ManyToOne
+    private IdentificadorMatrizFilialModel identificadorMatrizFilialModel;
     private String nomeFantasia;
     private String situacaoCadastral;
     private Date dataSituacaoCadastral;

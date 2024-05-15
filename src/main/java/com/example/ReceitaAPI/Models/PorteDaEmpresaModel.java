@@ -7,9 +7,9 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "tb_Qualificacao_responsavel")
-public class QualificacaoResponsavelModel {
+@Table(name = "tb_Porte_Empresa")
+public class PorteDaEmpresaModel {
     @Id
-    private Long id;
+    private Integer id;
     private String description;
 }
