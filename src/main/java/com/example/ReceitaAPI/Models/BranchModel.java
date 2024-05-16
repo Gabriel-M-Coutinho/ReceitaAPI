@@ -16,7 +16,7 @@ public class BranchModel {
 
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "cnpj_base")
+    @JoinColumn(name = "cnpj_base",referencedColumnName = "cnpjBase")
     private CompanyModel cnpjBase;
 
     @JsonIgnore

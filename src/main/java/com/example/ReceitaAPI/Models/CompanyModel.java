@@ -9,29 +9,30 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "tb_Companies")
+@Table(name = "tb_Companies",uniqueConstraints = @UniqueConstraint(columnNames = "cnpjBase"))
 public class CompanyModel {
 
     @Id
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String cnpjBase;
+
     @Column(nullable = false)
     private String razaoSocial;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "LegalNatureId",referencedColumnName = "id")
     private LegalNatureModel legalNatureModel;
 
-    @ManyToMany
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "Qualificacao_Responsavel_id",referencedColumnName = "id")
     private QualificacaoResponsavelModel qualificacaoResponsavelModel;
 
     @Column(nullable = false)
     private double capitalSocial;
 
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "PorteEmpresaId" , referencedColumnName = "id")
-    private String porteEmpresa;
+    private PorteDaEmpresaModel empresaModel;
 
     private String enteFederativoResponsavel;
 
@@ -39,13 +40,13 @@ public class CompanyModel {
     List<BranchModel> Estabelecimentos;
 
 
-    public CompanyModel(String cnpjBase, String razaoSocial, LegalNatureModel legalNatureModel, QualificacaoResponsavelModel qualificacaoResponsavelModel, double capitalSocial, String porteEmpresa, String enteFederativoResponsavel) {
+    public CompanyModel(String cnpjBase, String razaoSocial, LegalNatureModel legalNatureModel, QualificacaoResponsavelModel qualificacaoResponsavelModel, double capitalSocial, PorteDaEmpresaModel porteEmpresa, String enteFederativoResponsavel) {
         this.cnpjBase = cnpjBase;
         this.razaoSocial = razaoSocial;
         this.legalNatureModel = legalNatureModel;
         this.qualificacaoResponsavelModel = qualificacaoResponsavelModel;
         this.capitalSocial = capitalSocial;
-        this.porteEmpresa = porteEmpresa;
+        this.empresaModel = porteEmpresa;
         this.enteFederativoResponsavel = enteFederativoResponsavel;
 
         Estabelecimentos = new ArrayList<BranchModel>();
