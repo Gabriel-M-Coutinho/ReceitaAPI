@@ -1,4 +1,4 @@
-package com.example.ReceitaAPI.Models;
+package com.example.ReceitaAPI.Models.Estabelecimento;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -7,9 +7,9 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "tb_Qualificacao_responsavel")
-public class QualificacaoResponsavelModel {
+@Table(name = "tb_municipio")
+public class MunicipioModel {
     @Id
-    private Long id;
+    private int id;
     private String description;
 }

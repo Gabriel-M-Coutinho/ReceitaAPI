@@ -1,4 +1,4 @@
-package com.example.ReceitaAPI.Models;
+package com.example.ReceitaAPI.Models.Company;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -11,5 +11,14 @@ import lombok.Data;
 public class PorteDaEmpresaModel {
     @Id
     private Integer id;
+
     private String description;
+
+    public PorteDaEmpresaModel() {
+    }
+
+    public PorteDaEmpresaModel(Integer id, String description) {
+        this.id = id;
+        this.description = description;
+    }
 }

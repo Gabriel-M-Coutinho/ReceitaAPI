@@ -1,11 +1,11 @@
-package com.example.ReceitaAPI.Models;
+package com.example.ReceitaAPI.Models.Estabelecimento;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -14,8 +14,17 @@ public class IdentificadorMatrizFilialModel {
     @Id
     private Integer id;
 
-    @JsonIgnore
-    @ManyToOne()
-    private BranchModel branchModel;
     private String description;
 }
+
+
+
+
+
+
+
+
+
+
+
+
