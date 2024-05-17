@@ -16,11 +16,13 @@ public class CompanyStatusController {
 
     @Autowired
     CompanyStatusService companyStatusService;
+/*Status  */
     @PostMapping("/identificadorMatrizFilial")
-    public ResponseEntity<?> addMatrizFilialStatus(@Valid @RequestBody IdentificadorMatrizFilialDto identificadorMatrizFilialDto){
+    public ResponseEntity<?> addMatrizFilialStatus(@Valid @RequestBody IdentificadorMatrizFilialDto identificadorMatrizFilialDto) {
         IdentificadorMatrizFilialModel identificadorMatrizFilialModel = new IdentificadorMatrizFilialModel();
-        BeanUtils.copyProperties(identificadorMatrizFilialDto,identificadorMatrizFilialModel);
+        BeanUtils.copyProperties(identificadorMatrizFilialDto, identificadorMatrizFilialModel);
         return ResponseEntity.ok().body(companyStatusService.addIdentificadorMatrizFilial(identificadorMatrizFilialModel));
 
     }
+
 }
