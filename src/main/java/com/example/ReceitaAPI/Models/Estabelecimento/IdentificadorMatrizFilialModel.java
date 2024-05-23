@@ -15,6 +15,14 @@ public class IdentificadorMatrizFilialModel {
     private Integer id;
 
     private String description;
+
+    public IdentificadorMatrizFilialModel() {
+    }
+
+    public IdentificadorMatrizFilialModel(Integer id, String description) {
+        this.id = id;
+        this.description = description;
+    }
 }
 
 

@@ -1,4 +1,4 @@
-package com.example.ReceitaAPI.Services;
+package com.example.ReceitaAPI.Services.Company;
 
 import com.example.ReceitaAPI.Models.Company.NaturezaLegalModel;
 import com.example.ReceitaAPI.Models.Company.PorteDaEmpresaModel;
@@ -17,8 +17,7 @@ import java.util.Optional;
 
 @Service
 public class CompanyStatusService {
-    @Autowired
-    IdentificadorMatrizFilialRepository identificadorMatrizFilialRepository;
+
     @Autowired
     NaturezaLegalRepository naturezaLegalRepository;
     @Autowired
@@ -26,11 +25,6 @@ public class CompanyStatusService {
     @Autowired
     QualificacaoResponsavelRepository qualificacaoResponsavelRepository;
 
-
-    public List<IdentificadorMatrizFilialModel> addIdentificadorMatrizFilial(IdentificadorMatrizFilialModel identificadorMatrizFilialModel){
-        identificadorMatrizFilialRepository.save(identificadorMatrizFilialModel);
-        return identificadorMatrizFilialRepository.findAll();
-    }
 
     public List<NaturezaLegalModel> addStatusNaturezaLegal(NaturezaLegalModel naturezaLegalModel){
 
@@ -61,6 +55,13 @@ public class CompanyStatusService {
         }
         throw new Error("status de qualificacao responsavel ja cadastrada");
     }
+
+
+
+
+
+
+
 
 
 }

@@ -12,16 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@ToString
+
 @Entity
+@Data
 @Table(name = "tb_Companies", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"cnpjBase"})
 })
 
 
-@NoArgsConstructor
-@Getter
-@Setter
+
 public class CompanyModel {
 
     @Id
@@ -30,8 +29,6 @@ public class CompanyModel {
     private String cnpjBase;
 
 
-
-    @Column(nullable = false)
     private String razaoSocial;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -42,7 +39,7 @@ public class CompanyModel {
     @JoinColumn(name = "Qualificacao_Responsavel_id",referencedColumnName = "id")
     private QualificacaoResponsavelModel qualificacaoResponsavelModel;
 
-    @Column(nullable = false)
+
     private double capitalSocial;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -51,10 +48,12 @@ public class CompanyModel {
 
     private String enteFederativoResponsavel;
 
-    @OneToMany(mappedBy = "cnpjBase",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    @JsonIgnore
+
+    @OneToMany(mappedBy = "cnpjBaseId",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     List<EstabelecimentoModel> Estabelecimentos;
 
+    public CompanyModel() {
+    }
 
     public CompanyModel(String cnpjBase, String razaoSocial, NaturezaLegalModel naturezaLegalModel, QualificacaoResponsavelModel qualificacaoResponsavelModel, double capitalSocial, PorteDaEmpresaModel porteEmpresa, String enteFederativoResponsavel) {
         this.cnpjBase = cnpjBase;
@@ -66,7 +65,6 @@ public class CompanyModel {
         this.enteFederativoResponsavel = enteFederativoResponsavel;
 
         Estabelecimentos = new ArrayList<EstabelecimentoModel>();
-
     }
 
     public void AddEstabeleciomento(EstabelecimentoModel estabelecimentoModel){
@@ -75,7 +73,6 @@ public class CompanyModel {
     public void DeleteEstabelecimento(EstabelecimentoModel estabelecimentoModel){
         Estabelecimentos.remove(estabelecimentoModel);
     }
-
 
     @Override
     public final boolean equals(Object o) {

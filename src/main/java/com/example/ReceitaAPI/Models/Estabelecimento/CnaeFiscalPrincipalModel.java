@@ -7,16 +7,17 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "tb_municipio")
-public class MunicipioModel {
+@Table(name = "tb_cnae")
+public class CnaeFiscalPrincipalModel {
+
     @Id
     private int id;
     private String description;
 
-    public MunicipioModel() {
+    public CnaeFiscalPrincipalModel() {
     }
 
-    public MunicipioModel(int id, String description) {
+    public CnaeFiscalPrincipalModel(int id, String description) {
         this.id = id;
         this.description = description;
     }

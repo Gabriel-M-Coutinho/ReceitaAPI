@@ -8,7 +8,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "tb_MotivoSituacaoCadastral")
-public class MotivoSituacaoCadastralModel {
+public class MotivoSituacaoCadastralDto {
     @Id
     private int id;
     private String description;

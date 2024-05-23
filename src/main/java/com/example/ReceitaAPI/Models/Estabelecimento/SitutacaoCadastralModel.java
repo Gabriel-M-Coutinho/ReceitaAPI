@@ -23,8 +23,3 @@ public class SitutacaoCadastralModel {
     }
 }
 
- /*   01 – NULA
-2 – ATIVA
-3 – SUSPENSA
-4 – INAPTA
-08 – BAIXADA*/
