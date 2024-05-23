@@ -18,6 +18,8 @@ public class EstabelecimentoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String cnpjFull;
+
     @Column(name = "cnpj_base")
     private String cnpjBaseId;
 
@@ -47,6 +49,8 @@ public class EstabelecimentoModel {
     @Column(name = "cnaePrincipal_id")
     private Long cnaeFiscalPrincipalId; // Alterado para Long
 
+    @Lob
+    @Column(name = "cnaeFiscalSecundaria", columnDefinition = "LONGTEXT")
     private String cnaeFiscalSecundaria;
     private String tipoLogradouro;
     private String logradouro;
@@ -60,30 +64,20 @@ public class EstabelecimentoModel {
     @Column(name = "Municipio_id")
     private Long municipioId; // Alterado para Long
 
+
+    private String ddd1;
+    private String telefone1;
+    private String ddd2;
+    private String telefone2;
+    private String dddfax;
+    private String fax;
+    private String email;
+    private String situacaoespecial;
+    private Date datasituacaoespecial;
+
+
     public EstabelecimentoModel() {
     }
 
-    public EstabelecimentoModel(String cnpjBaseId, String cnpjOrdem, String cnpjDV, Long identificadorMatrizFilialId, String nomeFantasia, Long situtacaoCadastralId, Date dataSituacaoCadastral, Long motivoSituacaoCadastralId, String nomeCidadeExterior, Long paisId, Date dataInicioAtividade, Long cnaeFiscalPrincipalId, String cnaeFiscalSecundaria, String tipoLogradouro, String logradouro, String numero, String complemento, String bairro, String cep, String uf, Long municipioId) {
-        this.cnpjBaseId = cnpjBaseId;
-        this.cnpjOrdem = cnpjOrdem;
-        this.cnpjDV = cnpjDV;
-        this.identificadorMatrizFilialId = identificadorMatrizFilialId;
-        this.nomeFantasia = nomeFantasia;
-        this.situtacaoCadastralId = situtacaoCadastralId;
-        this.dataSituacaoCadastral = dataSituacaoCadastral;
-        this.motivoSituacaoCadastralId = motivoSituacaoCadastralId;
-        this.nomeCidadeExterior = nomeCidadeExterior;
-        this.paisId = paisId;
-        this.dataInicioAtividade = dataInicioAtividade;
-        this.cnaeFiscalPrincipalId = cnaeFiscalPrincipalId;
-        this.cnaeFiscalSecundaria = cnaeFiscalSecundaria;
-        this.tipoLogradouro = tipoLogradouro;
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.complemento = complemento;
-        this.bairro = bairro;
-        this.cep = cep;
-        this.uf = uf;
-        this.municipioId = municipioId;
-    }
+
 }
