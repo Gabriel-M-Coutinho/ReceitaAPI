@@ -18,10 +18,10 @@ public class EstabelecimentoModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String cnpjFull;
+    private Long cnpjFull;
 
     @Column(name = "cnpj_base")
-    private String cnpjBaseId;
+    private Long cnpjBaseId;
 
     private String cnpjOrdem;
     private String cnpjDV;
@@ -56,7 +56,12 @@ public class EstabelecimentoModel {
     private String logradouro;
     @Column(name = "numero", length = 255)
     private String numero;
+    @Lob
+    @Column(name = "complemento", columnDefinition = "LONGTEXT")
     private String complemento;
+
+
+    @Column(name = "bairro", columnDefinition = "LONGTEXT")
     private String bairro;
     private String cep;
     private String uf;

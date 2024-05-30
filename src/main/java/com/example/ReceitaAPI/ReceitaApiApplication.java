@@ -2,13 +2,15 @@ package com.example.ReceitaAPI;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 
-//@SpringBootApplication
+@SpringBootApplication
+@EnableAsync
 public class ReceitaApiApplication {
 
 	public static void main(String[] args) {
 
-		//SpringApplication.run(ReceitaApiApplication.class, args);
+		SpringApplication.run(ReceitaApiApplication.class, args);
 
 	}
 

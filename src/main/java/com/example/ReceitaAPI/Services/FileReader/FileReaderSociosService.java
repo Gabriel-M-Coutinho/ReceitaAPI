@@ -2,8 +2,10 @@ package com.example.ReceitaAPI.Services.FileReader;
 
 import com.example.ReceitaAPI.Models.Company.CompanyModel;
 import com.example.ReceitaAPI.Models.Estabelecimento.EstabelecimentoModel;
+import com.example.ReceitaAPI.Models.Socios.SocioModel;
 import com.example.ReceitaAPI.Repositories.Estabelecimento.EstabelecimentoRepository;
 import com.example.ReceitaAPI.Services.Estabelecimento.EstabelecimentoService;
+import com.example.ReceitaAPI.Services.Socio.SocioService;
 import com.example.ReceitaAPI.Services.UtillsService;
 import com.opencsv.CSVParserBuilder;
 import com.opencsv.CSVReader;
@@ -24,10 +26,10 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Service
-public class FileReaderBreanchService {
+public class FileReaderSociosService {
 
     @Autowired
-    private EstabelecimentoService estabelecimentoService;
+    private SocioService socioService;
     @Autowired
     private UtillsService utillsService;
 
@@ -40,7 +42,7 @@ public class FileReaderBreanchService {
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         int batchSize = 10000;
         int linecount = 0;
-        List<EstabelecimentoModel> batchList = new ArrayList<>(batchSize);
+        List<SocioModel> batchList = new ArrayList<>(batchSize);
 
         logger.info("Iniciando leitura do arquivo CSV: {}", csvFile);
 
@@ -50,26 +52,21 @@ public class FileReaderBreanchService {
                     .build();
             taskStatusMap.put(taskId, "Processando");
 
-            // Skip the first line
-            reader.readNext();
+
 
             String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
                 linecount++;
 
-                if (nextLine.length < 30) {
-                    logger.warn("Linha inválida na contagem {}: {}", linecount, Arrays.toString(nextLine));
-                    continue; // Pula linhas inválidas
-                }
 
-                EstabelecimentoModel model = estabelecimentoService.parseLine(nextLine, format);
+                SocioModel model = socioService.parseLine(nextLine, format);
 
                 if (model != null) {
                     batchList.add(model);
                 }
 
                 if (batchList.size() >= batchSize) {
-                    estabelecimentoService.saveAll(batchList);
+                    socioService.saveAll(batchList);
                     logger.info("Linhas processadas: {} - Memória utilizada: {} bytes", linecount, Runtime.getRuntime().totalMemory());
                     batchList.clear();
                 }
@@ -77,7 +74,7 @@ public class FileReaderBreanchService {
 
             // Salvar qualquer restante
             if (!batchList.isEmpty()) {
-                estabelecimentoService.saveAll(batchList);
+                socioService.saveAll(batchList);
                 logger.info("Linhas processadas (restante): {} - Memória utilizada: {} bytes", linecount, Runtime.getRuntime().totalMemory());
             }
 
